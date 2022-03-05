@@ -1,0 +1,31 @@
+version: '3'
+services:
+  monitored-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      JAVA_OPTS: >-
+        -Djava.rmi.server.hostname=0.0.0.0
+        -Djava.net.preferIPv4Stack=true
+        -Dcom.sun.management.jmxremote
+        -Dcom.sun.management.jmxremote.port=7091
+        -Dcom.sun.management.jmxremote.rmi.port=7091
+        -Dcom.sun.management.jmxremote.local.only=false
+        -Dcom.sun.management.jmxremote.authenticate=true
+        -Dcom.sun.management.jmxremote.access.file=/var/tmp/security/jmxremote.access
+        -Dcom.sun.management.jmxremote.password.file=/var/tmp/security/jmxremote.password
+        -Dcom.sun.management.jmxremote.ssl=true
+        -Dcom.sun.management.jmxremote.ssl.need.client.auth=true
+        -Dcom.sun.management.jmxremote.registry.ssl=true
+        -Djavax.net.ssl.keyStore=/var/tmp/keys/monitored-app-keystore
+        -Djavax.net.ssl.keyStorePassword=changeit
+        -Djavax.net.ssl.trustStore=/var/tmp/keys/monitored-app-truststore
+        -Djavax.net.ssl.trustStorePassword=changeit
+    ports:
+      - "8000:8080"
+      - "7091:7091"
+    volumes:
+      - ./keys/:/var/tmp/keys/
+      - ./security/:/var/tmp/security/
+
