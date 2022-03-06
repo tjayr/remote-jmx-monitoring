@@ -30,5 +30,5 @@ services:
       - "7091:7091"
     volumes:
       - ./keys/:/var/tmp/keys/
-      - ./auth/:/var/tmp/security/
+      - ./auth/:/var/tmp/auth/
 
