@@ -1,5 +1,8 @@
+
 version: '3'
+
 services:
+  #Launch the application enabling JMX with authentication and SSL
   monitored-app:
     build:
       context: .
@@ -13,8 +16,8 @@ services:
         -Dcom.sun.management.jmxremote.rmi.port=7091
         -Dcom.sun.management.jmxremote.local.only=false
         -Dcom.sun.management.jmxremote.authenticate=true
-        -Dcom.sun.management.jmxremote.access.file=/var/tmp/security/jmxremote.access
-        -Dcom.sun.management.jmxremote.password.file=/var/tmp/security/jmxremote.password
+        -Dcom.sun.management.jmxremote.access.file=/var/tmp/auth/jmxremote.access
+        -Dcom.sun.management.jmxremote.password.file=/var/tmp/auth/jmxremote.password
         -Dcom.sun.management.jmxremote.ssl=true
         -Dcom.sun.management.jmxremote.ssl.need.client.auth=true
         -Dcom.sun.management.jmxremote.registry.ssl=true
@@ -27,5 +30,5 @@ services:
       - "7091:7091"
     volumes:
       - ./keys/:/var/tmp/keys/
-      - ./security/:/var/tmp/security/
+      - ./auth/:/var/tmp/security/
 
