@@ -14,12 +14,11 @@ $ docker-compose up
 
 ## Authentication
 
-Sample JMX authentication files are in the `security` folder
+Sample JMX authentication files are in the `monitored-app/auth` folder
 
 ## Keys and Certificates
 
-Keystore and truststore for both client (JDK Mission Control, JVisualvm etc) and the sample spring application are in the `keys` folder.
-The password for all is: `changeit`
+Keystore and truststore for both client (JDK Mission Control, JVisualvm etc) and the sample spring application are in the `monitored-app/keys` folder. The password for all is: `changeit`
 
 ## Configuration
 
